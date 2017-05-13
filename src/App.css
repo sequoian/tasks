@@ -9,6 +9,12 @@
   list-style: none;
 }
 
+.nav button {
+  border: 1px solid black;
+  width: 100px;
+  margin: 1px;
+}
+
 button.selected {
   background-color: lightyellow;
 }

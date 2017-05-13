@@ -15,16 +15,16 @@ class App extends Component {
     this.state = {
       currentPage: Pages.SCHEDULED
     }
-    this.changePage = this.changePage.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
-  changePage(page) {
+  handlePageChange(page) {
     this.setState({currentPage: page});
   }
   render() {
     return (
       <div className="App">
         <Tasks header={this.state.currentPage} />
-        <Nav action={this.changePage} selected={this.state.currentPage} />
+        <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
       </div>
     );
   }
@@ -36,19 +36,19 @@ class Nav extends Component {
       <ul className="nav">
         <li>
           <NavButton page={Pages.SCHEDULED} 
-          selected={this.props.selected} action={this.props.action} />
+          selected={this.props.selected} onNavClick={this.props.onNavClick} />
         </li>
         <li>
           <NavButton page={Pages.OVERDUE} 
-          selected={this.props.selected} action={this.props.action} />
+          selected={this.props.selected} onNavClick={this.props.onNavClick} />
         </li>
         <li>
           <NavButton page={Pages.ACTIVE} 
-          selected={this.props.selected} action={this.props.action} />
+          selected={this.props.selected} onNavClick={this.props.onNavClick} />
         </li>
         <li>
           <NavButton page={Pages.COMPLETE} 
-          selected={this.props.selected} action={this.props.action} />
+          selected={this.props.selected} onNavClick={this.props.onNavClick} />
         </li>
       </ul>
     );
@@ -62,7 +62,7 @@ class NavButton extends Component {
       <button 
         type="button"
         className={selected}
-        onClick={() => this.props.action(this.props.page)}
+        onClick={() => this.props.onNavClick(this.props.page)}
       >
         {this.props.page}
       </button>
