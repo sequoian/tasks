@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+// Enum for the page states.  The string is the label for the nav buttons
 const Pages = {
   SCHEDULED: 'scheduled',
   OVERDUE: 'overdue',
@@ -34,27 +35,37 @@ class Nav extends Component {
     return (
       <ul className="nav">
         <li>
-          <button className={this.props.selected === Pages.SCHEDULED && "active"} type="button" onClick={() => this.props.action(Pages.SCHEDULED)}>
-            Scheduled
-          </button>
+          <NavButton page={Pages.SCHEDULED} 
+          selected={this.props.selected} action={this.props.action} />
         </li>
         <li>
-          <button className={this.props.selected === Pages.OVERDUE && "active"} type="button" onClick={() => this.props.action(Pages.OVERDUE)}>
-            Overdue
-          </button>
+          <NavButton page={Pages.OVERDUE} 
+          selected={this.props.selected} action={this.props.action} />
         </li>
         <li>
-          <button className={this.props.selected === Pages.ACTIVE && "active"} type="button" onClick={() => this.props.action(Pages.ACTIVE)}>
-            Active
-          </button>
+          <NavButton page={Pages.ACTIVE} 
+          selected={this.props.selected} action={this.props.action} />
         </li>
         <li>
-          <button className={this.props.selected === Pages.COMPLETE && "active"} type="button" onClick={() => this.props.action(Pages.COMPLETE)}>
-            Completed
-          </button>
+          <NavButton page={Pages.COMPLETE} 
+          selected={this.props.selected} action={this.props.action} />
         </li>
       </ul>
     );
+  }
+}
+
+class NavButton extends Component {
+  render() {
+    return (
+      <button 
+        type="button"
+        className={this.props.selected === this.props.page && "selected"} 
+        onClick={() => this.props.action(this.props.page)}
+      >
+        {this.props.page}
+      </button>
+    )
   }
 }
 
@@ -63,7 +74,6 @@ class Tasks extends Component {
     return (
       <div className="tasks">
         <h2>{this.props.header}</h2>
-        {this.props.comp}
       </div>
     );
   }

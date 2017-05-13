@@ -9,6 +9,6 @@
   list-style: none;
 }
 
-button.active {
+button.selected {
   background-color: lightyellow;
 }
