@@ -57,10 +57,11 @@ class Nav extends Component {
 
 class NavButton extends Component {
   render() {
+    const selected = this.props.selected === this.props.page ? "selected" : null;
     return (
       <button 
         type="button"
-        className={this.props.selected === this.props.page && "selected"} 
+        className={selected}
         onClick={() => this.props.action(this.props.page)}
       >
         {this.props.page}
