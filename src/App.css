@@ -8,3 +8,7 @@
 .nav {
   list-style: none;
 }
+
+button.active {
+  background-color: lightyellow;
+}

@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Tasks header={this.state.currentPage} />
-        <Nav action={this.changePage} />
+        <Nav action={this.changePage} selected={this.state.currentPage} />
       </div>
     );
   }
@@ -34,22 +34,22 @@ class Nav extends Component {
     return (
       <ul className="nav">
         <li>
-          <button type="button" onClick={() => this.props.action(Pages.SCHEDULED)}>
+          <button className={this.props.selected === Pages.SCHEDULED && "active"} type="button" onClick={() => this.props.action(Pages.SCHEDULED)}>
             Scheduled
           </button>
         </li>
         <li>
-          <button type="button" onClick={() => this.props.action(Pages.OVERDUE)}>
+          <button className={this.props.selected === Pages.OVERDUE && "active"} type="button" onClick={() => this.props.action(Pages.OVERDUE)}>
             Overdue
           </button>
         </li>
         <li>
-          <button type="button" onClick={() => this.props.action(Pages.ACTIVE)}>
+          <button className={this.props.selected === Pages.ACTIVE && "active"} type="button" onClick={() => this.props.action(Pages.ACTIVE)}>
             Active
           </button>
         </li>
         <li>
-          <button type="button" onClick={() => this.props.action(Pages.COMPLETE)}>
+          <button className={this.props.selected === Pages.COMPLETE && "active"} type="button" onClick={() => this.props.action(Pages.COMPLETE)}>
             Completed
           </button>
         </li>
