@@ -14,7 +14,8 @@ class App extends Component {
     super(props);
     this.state = {
       currentPage: Pages.SCHEDULED,
-      text: ''
+      text: '',
+      tasks: []
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -31,13 +32,20 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.text);
+    const newTask = {
+      text: this.state.text,
+      id: Date.now()
+    };
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.concat(newTask),
+      text: ''
+    }));
   }
 
   render() {
     return (
       <div className="App">
-        <Main header={this.state.currentPage} />
+        <Main header={this.state.currentPage} tasks={this.state.tasks} />
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text"  placeholder="Add Task" 
@@ -94,11 +102,22 @@ class Main extends Component {
     return (
       <div className="tasks">
         <h2>{this.props.header}</h2>
+        <TaskList tasks={this.props.tasks} />
       </div>
     );
   }
 }
 
-
+class TaskList extends Component {
+  render() {
+    return (
+      <ul>
+        {this.props.tasks.map(task => (
+          <li key={task.id}>{task.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
 
 export default App;
