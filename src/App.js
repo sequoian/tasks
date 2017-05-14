@@ -13,18 +13,37 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: Pages.SCHEDULED
+      currentPage: Pages.SCHEDULED,
+      text: ''
     }
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handlePageChange(page) {
     this.setState({currentPage: page});
   }
+
+  handleTextChange(e) {
+    this.setState({text: e.target.value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.text);
+  }
+
   render() {
     return (
       <div className="App">
-        <Tasks header={this.state.currentPage} />
+        <Main header={this.state.currentPage} />
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
+        <form onSubmit={this.handleSubmit}>
+          <input type="text"  placeholder="Add Task" 
+          onChange={this.handleTextChange} value={this.state.text} />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
@@ -70,7 +89,7 @@ class NavButton extends Component {
   }
 }
 
-class Tasks extends Component {
+class Main extends Component {
   render() {
     return (
       <div className="tasks">
