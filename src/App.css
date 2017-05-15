@@ -1,8 +1,19 @@
+*,
+*::before
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .tasks {
-  width: 400px;
-  height: 300px;
+  max-width: 600px;
+  max-height: 400px;
   border: 1px solid black;
   margin: auto;
+  overflow: auto;
 }
 
 .nav {

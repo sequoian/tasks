@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import './reset.css';
 import './App.css';
+import './Task.css';
 
 // Enum for the page states.  The string is the label for the nav buttons
 const Pages = {
@@ -121,9 +123,7 @@ class TaskList extends Component {
     return (
       <ul className="task-list">
         {this.props.tasks.map(task => (
-          <li key={task.id}>
-            <TaskItem task={task} />
-          </li>
+          <TaskItem key={task.id} task={task} />
         ))}
       </ul>
     );
@@ -134,7 +134,7 @@ class TaskItem extends Component {
   render() {
     const complete = this.props.task.complete ? 'complete' : '';
     return (
-      <div className={`task-item ${complete}`}>
+      <li className={`task-item ${complete}`}>
         <div className="t-cell">
           <div className="checkbox" />
         </div>
@@ -144,7 +144,7 @@ class TaskItem extends Component {
         <div className="t-cell">
           <div className="delete" />
         </div>
-      </div>
+      </li>
     );
   }
 }

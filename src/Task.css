@@ -1,0 +1,65 @@
+/* checkbox styles */
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+  box-sizing: content-box;
+  border: 3px solid green;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.complete .checkbox {
+  background-color: green;
+  background-image: url("checkmark.svg");
+  background-repeat: no-repeat;
+  background-position: 50% 60%;
+  background-size: 70%;
+}
+
+/* delete styles */
+
+.delete {
+  color: darkred;
+  font-size: 20px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.delete::after {
+  content: '\2716';
+}
+
+/* task styles */
+
+.task-content {
+  font-size: 20px;
+  width: 100%;
+  padding: 0 5px;
+}
+
+.complete .task-content {
+  color: gray;
+}
+
+.t-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* list styles */
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-item {
+  border-bottom: 1px solid #999;
+  padding: 5px;
+}
+
+.task-item:first-child {
+  border-top: 1px solid #999;
+}
