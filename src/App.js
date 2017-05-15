@@ -9,13 +9,21 @@ const Pages = {
   COMPLETE: 'complete',
 }
 
+const dummy_tasks = [
+  {id: 1, title: 'Take out the trash barrels'},
+  {id: 2, title: 'Do the dishes'},
+  {id: 3, title: 'Get gas'},
+  {id: 4, title: 'Finish Tasks app'},
+  {id: 5, title: 'Hike Mt. Baldy'},
+]
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: Pages.SCHEDULED,
       text: '',
-      tasks: []
+      tasks: dummy_tasks
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -33,7 +41,7 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const newTask = {
-      text: this.state.text,
+      title: this.state.text,
       id: Date.now()
     };
     this.setState((prevState) => ({
@@ -113,7 +121,7 @@ class TaskList extends Component {
     return (
       <ul>
         {this.props.tasks.map(task => (
-          <li key={task.id}>{task.text}</li>
+          <li key={task.id}>{task.title}</li>
         ))}
       </ul>
     );
