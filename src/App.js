@@ -10,11 +10,11 @@ const Pages = {
 }
 
 const dummy_tasks = [
-  {id: 1, title: 'Take out the trash barrels'},
-  {id: 2, title: 'Do the dishes'},
-  {id: 3, title: 'Get gas'},
-  {id: 4, title: 'Finish Tasks app'},
-  {id: 5, title: 'Hike Mt. Baldy'},
+  {id: 1, title: 'Take out the trash barrels', complete: true},
+  {id: 2, title: 'Do the dishes', complete: false},
+  {id: 3, title: 'Get gas', complete: false},
+  {id: 4, title: 'Finish Tasks app', complete: false},
+  {id: 5, title: 'Hike Mt. Baldy', complete: false},
 ]
 
 class App extends Component {
@@ -119,11 +119,32 @@ class Main extends Component {
 class TaskList extends Component {
   render() {
     return (
-      <ul>
+      <ul className="task-list">
         {this.props.tasks.map(task => (
-          <li key={task.id}>{task.title}</li>
+          <li key={task.id}>
+            <TaskItem task={task} />
+          </li>
         ))}
       </ul>
+    );
+  }
+}
+
+class TaskItem extends Component {
+  render() {
+    const complete = this.props.task.complete ? 'complete' : '';
+    return (
+      <div className={`task-item ${complete}`}>
+        <div className="t-cell">
+          <div className="checkbox" />
+        </div>
+        <div className="task-content t-cell">
+          {this.props.task.title}
+        </div>
+        <div className="t-cell">
+          <div className="delete" />
+        </div>
+      </div>
     );
   }
 }
