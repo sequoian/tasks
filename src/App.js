@@ -30,6 +30,7 @@ class App extends Component {
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
   }
 
   handlePageChange(page) {
@@ -52,10 +53,25 @@ class App extends Component {
     }));
   }
 
+  toggleComplete(id) {
+    this.setState((prevState) => {
+      prevState.tasks.map((task) => {
+        if (task.id === id) {
+          return task.complete = task.complete ? false : true; 
+        }
+        else {
+          return null;
+        }
+      });
+      return {tasks: prevState.tasks};
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Main header={this.state.currentPage} tasks={this.state.tasks} />
+        <Main header={this.state.currentPage} tasks={this.state.tasks}
+        toggleComplete={this.toggleComplete} />
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text"  placeholder="Add Task" 
@@ -112,7 +128,7 @@ class Main extends Component {
     return (
       <div className="tasks">
         <h2>{this.props.header}</h2>
-        <TaskList tasks={this.props.tasks} />
+        <TaskList tasks={this.props.tasks} toggleComplete={this.props.toggleComplete} />
       </div>
     );
   }
@@ -123,7 +139,7 @@ class TaskList extends Component {
     return (
       <ul className="task-list">
         {this.props.tasks.map(task => (
-          <TaskItem key={task.id} task={task} />
+          <TaskItem key={task.id} task={task} toggleComplete={this.props.toggleComplete} />
         ))}
       </ul>
     );
@@ -136,7 +152,8 @@ class TaskItem extends Component {
     return (
       <li className={`task-item ${complete}`}>
         <div className="t-cell">
-          <div className="checkbox" />
+          <div className="checkbox" 
+          onClick={() => this.props.toggleComplete(this.props.task.id)} />
         </div>
         <div className="task-content t-cell">
           {this.props.task.title}
