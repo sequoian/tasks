@@ -40,16 +40,20 @@ class App extends Component {
     this.setState({text: e.target.value});
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const newTask = {
-      title: this.state.text,
-      id: Date.now()
-    };
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.concat(newTask),
-      text: ''
-    }));
+  handleSubmit(event) {
+    event.preventDefault();
+    const text = this.state.text.trim();
+    if (text) {
+      const newTask = {
+        title: this.state.text,
+        id: Date.now(),
+        complete: false
+      };
+      this.setState((prevState) => ({
+        tasks: prevState.tasks.concat(newTask),
+        text: ''
+      }));
+    }
   }
 
   toggleComplete(id) {
@@ -72,14 +76,25 @@ class App extends Component {
     }));
   }
 
+  validateNewTask(event) {
+    const ENTER_KEY = 13;
+    if (event.keyCode !== ENTER_KEY) {
+      return;
+    }
+    event.preventDefault();
+    if (this.state.text.trim()) {
+
+    }
+
+  }
+
   render() {
     return (
       <div className="App">   
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text"  placeholder="Add Task" autoFocus={true}
-          onChange={this.handleTextChange} value={this.state.text} />
-          
+          onChange={this.handleTextChange} value={this.state.text} /> 
         </form>
         <Main page={this.state.currentPage} tasks={this.state.tasks}
         toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
