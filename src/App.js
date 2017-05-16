@@ -5,10 +5,8 @@ import './Task.css';
 
 // Enum for the page states.  The string is the label for the nav buttons
 const Pages = {
-  SCHEDULED: 'scheduled',
-  OVERDUE: 'overdue',
   ACTIVE: 'active',
-  COMPLETE: 'complete',
+  COMPLETE: 'complete'
 }
 
 const dummy_tasks = [
@@ -23,7 +21,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: Pages.SCHEDULED,
+      currentPage: Pages.ACTIVE,
       text: '',
       tasks: dummy_tasks
     }
@@ -76,15 +74,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Main header={this.state.currentPage} tasks={this.state.tasks}
-        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+      <div className="App">   
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text"  placeholder="Add Task" 
           onChange={this.handleTextChange} value={this.state.text} />
           <button>Submit</button>
         </form>
+        <Main page={this.state.currentPage} tasks={this.state.tasks}
+        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
       </div>
     );
   }
@@ -94,14 +92,6 @@ class Nav extends Component {
   render() {
     return (
       <ul className="nav">
-        <li>
-          <NavButton page={Pages.SCHEDULED} 
-          selected={this.props.selected} onNavClick={this.props.onNavClick} />
-        </li>
-        <li>
-          <NavButton page={Pages.OVERDUE} 
-          selected={this.props.selected} onNavClick={this.props.onNavClick} />
-        </li>
         <li>
           <NavButton page={Pages.ACTIVE} 
           selected={this.props.selected} onNavClick={this.props.onNavClick} />
@@ -134,8 +124,8 @@ class Main extends Component {
   render() {
     return (
       <div className="tasks">
-        <h2>{this.props.header}</h2>
-        <TaskList tasks={this.props.tasks} 
+        <h2>{this.props.page}</h2>
+        <TaskList tasks={this.props.tasks} page={this.props.page} 
         toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
       </div>
     );
@@ -144,9 +134,18 @@ class Main extends Component {
 
 class TaskList extends Component {
   render() {
+    let filterCallback = null;
+    if (this.props.page === Pages.ACTIVE) {
+      filterCallback = (task) => {return !task.complete}
+    }
+    else if (this.props.page === Pages.COMPLETE) {
+      filterCallback = (task) => {return task.complete}
+    }
+    const tasks = this.props.tasks.filter(filterCallback)
+
     return (
       <ul className="task-list">
-        {this.props.tasks.map(task => (
+        {tasks.map(task => (
           <TaskItem key={task.id} task={task} 
           toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
         ))}
