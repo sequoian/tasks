@@ -77,9 +77,9 @@ class App extends Component {
       <div className="App">   
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
-          <input type="text"  placeholder="Add Task" 
+          <input type="text"  placeholder="Add Task" autoFocus={true}
           onChange={this.handleTextChange} value={this.state.text} />
-          <button>Submit</button>
+          
         </form>
         <Main page={this.state.currentPage} tasks={this.state.tasks}
         toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
@@ -124,7 +124,6 @@ class Main extends Component {
   render() {
     return (
       <div className="tasks">
-        <h2>{this.props.page}</h2>
         <TaskList tasks={this.props.tasks} page={this.props.page} 
         toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
       </div>
