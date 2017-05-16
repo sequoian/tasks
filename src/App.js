@@ -31,6 +31,7 @@ class App extends Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   handlePageChange(page) {
@@ -67,11 +68,17 @@ class App extends Component {
     });
   }
 
+  deleteTask(id) {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter(task => task.id !== id)
+    }));
+  }
+
   render() {
     return (
       <div className="App">
         <Main header={this.state.currentPage} tasks={this.state.tasks}
-        toggleComplete={this.toggleComplete} />
+        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
         <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
         <form onSubmit={this.handleSubmit}>
           <input type="text"  placeholder="Add Task" 
@@ -128,7 +135,8 @@ class Main extends Component {
     return (
       <div className="tasks">
         <h2>{this.props.header}</h2>
-        <TaskList tasks={this.props.tasks} toggleComplete={this.props.toggleComplete} />
+        <TaskList tasks={this.props.tasks} 
+        toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
       </div>
     );
   }
@@ -139,7 +147,8 @@ class TaskList extends Component {
     return (
       <ul className="task-list">
         {this.props.tasks.map(task => (
-          <TaskItem key={task.id} task={task} toggleComplete={this.props.toggleComplete} />
+          <TaskItem key={task.id} task={task} 
+          toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
         ))}
       </ul>
     );
@@ -159,7 +168,8 @@ class TaskItem extends Component {
           {this.props.task.title}
         </div>
         <div className="t-cell">
-          <div className="delete" />
+          <div className="delete"
+          onClick={() => this.props.deleteTask(this.props.task.id)} />
         </div>
       </li>
     );
