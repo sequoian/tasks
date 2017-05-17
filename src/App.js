@@ -90,14 +90,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">   
-        <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
-        <form onSubmit={this.handleSubmit}>
-          <input type="text"  placeholder="Add Task" autoFocus={true}
-          onChange={this.handleTextChange} value={this.state.text} /> 
-        </form>
+      <div className="App">  
+        <header> 
+          <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
+          <form onSubmit={this.handleSubmit}>
+            <input type="text"  placeholder="Add Task" autoFocus={true} className="new-task"
+            onChange={this.handleTextChange} value={this.state.text} /> 
+          </form>
+        </header>
         <Main page={this.state.currentPage} tasks={this.state.tasks}
-        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} />
+        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} /> 
       </div>
     );
   }

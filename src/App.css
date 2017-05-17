@@ -1,5 +1,5 @@
 *,
-*::before
+*::before,
 *::after {
   box-sizing: border-box;
 }
@@ -32,4 +32,21 @@ body {
 
 button.selected {
   background-color: lightyellow;
+}
+
+.new-task {
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  padding: 5px 10px;
+  margin: auto;
+}
+
+.new-task:focus {
+  outline: none;
+}
+
+header {
+  background-color: lightgray;
+  padding: 5px;
 }
