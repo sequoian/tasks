@@ -9,21 +9,13 @@ const Pages = {
   COMPLETE: 'complete'
 }
 
-const dummy_tasks = [
-  {id: 1, title: 'Take out the trash barrels', complete: true},
-  {id: 2, title: 'Do the dishes', complete: false},
-  {id: 3, title: 'Get gas', complete: false},
-  {id: 4, title: 'Finish Tasks app', complete: false},
-  {id: 5, title: 'Hike Mt. Baldy', complete: false},
-]
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: Pages.ACTIVE,
       text: '',
-      tasks: dummy_tasks
+      tasks: this.fetchLocally('tasks')
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -49,42 +41,45 @@ class App extends Component {
         id: Date.now(),
         complete: false
       };
-      this.setState((prevState) => ({
-        tasks: prevState.tasks.concat(newTask),
-        text: ''
-      }));
+      this.setState((prevState) => {
+        const tasks = prevState.tasks.concat(newTask)
+        this.storeLocally('tasks', tasks);
+        return {
+          tasks: prevState.tasks.concat(newTask),
+          text: ''
+        }
+      });
     }
   }
 
   toggleComplete(id) {
     this.setState((prevState) => {
-      prevState.tasks.map((task) => {
+      const tasks = prevState.tasks.map((task) => {
         if (task.id === id) {
-          return task.complete = task.complete ? false : true; 
+          task.complete = task.complete ? false : true; 
         }
-        else {
-          return null;
-        }
+        return task;
       });
-      return {tasks: prevState.tasks};
+      this.storeLocally('tasks', tasks);
+      return {tasks: tasks};
     });
   }
 
   deleteTask(id) {
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.filter(task => task.id !== id)
-    }));
+    this.setState((prevState) => {
+      const tasks = prevState.tasks.filter(task => task.id !== id);
+      this.storeLocally('tasks', tasks);
+      return {tasks: tasks};
+    });
   }
 
-  validateNewTask(event) {
-    const ENTER_KEY = 13;
-    if (event.keyCode !== ENTER_KEY) {
-      return;
-    }
-    event.preventDefault();
-    if (this.state.text.trim()) {
+  storeLocally(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
-    }
+  fetchLocally(key) {
+    const data = localStorage.getItem(key);
+    return JSON.parse(data) || [];
   }
 
   render() {
@@ -92,7 +87,6 @@ class App extends Component {
       <div className="App">  
         <header>
           <div className="top-bar">
-            
             <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
           </div>
           <form onSubmit={this.handleSubmit}>
