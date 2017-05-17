@@ -14,39 +14,70 @@ body {
 }
 
 .App {
+  position: relative;
   max-width: 600px;
   margin: auto;
   background-color: white;
-  
 }
+
+/* header styles */
+
+header {
+  background-color: white;
+  padding: 0 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.new-task:focus,
+.nav button:focus {
+  outline: none;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* logo styles */
+
+.logo {
+  display: flex;
+  font-size: 20px;
+}
+
+/* nav styles */
 
 .nav {
   list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 5px;
 }
 
 .nav button {
-  border: 1px solid black;
+  display: block;
+  border: none;
+  background-color: inherit;
+  font-size: 16px;
+  padding: 5px;
   width: 100px;
-  margin: 1px;
+  cursor: pointer;
+
 }
 
 button.selected {
-  background-color: lightyellow;
+  color: white;
+  background-color: #5f8386;
 }
+
+/* new task input styles */
 
 .new-task {
   font-size: 20px;
   width: 100%;
-  border: none;
+  border: 1px solid #999;
   padding: 5px 10px;
-  margin: auto;
-}
-
-.new-task:focus {
-  outline: none;
-}
-
-header {
-  background-color: lightgray;
-  padding: 5px;
+  border-radius: 5px;
 }

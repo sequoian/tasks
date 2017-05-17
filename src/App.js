@@ -85,14 +85,16 @@ class App extends Component {
     if (this.state.text.trim()) {
 
     }
-
   }
 
   render() {
     return (
       <div className="App">  
-        <header> 
-          <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
+        <header>
+          <div className="top-bar">
+            
+            <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
+          </div>
           <form onSubmit={this.handleSubmit}>
             <input type="text"  placeholder="Add Task" autoFocus={true} className="new-task"
             onChange={this.handleTextChange} value={this.state.text} /> 
