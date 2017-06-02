@@ -3,7 +3,7 @@ import './reset.css';
 import './App.css';
 import './Task.css';
 
-// Enum for the page states.  The string is the label for the nav buttons
+// Enum for the page states
 const Pages = {
   ACTIVE: 'active',
   COMPLETE: 'complete'
@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       currentPage: Pages.ACTIVE,
       text: '',
-      tasks: this.fetchLocally('tasks')
+      tasks: []
     }
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -24,12 +24,33 @@ class App extends Component {
     this.deleteTask = this.deleteTask.bind(this);
   }
 
-  handlePageChange(page) {
-    this.setState({currentPage: page});
+  /* Lifecycle */
+
+  componentDidMount() {
+    this.setState({
+      tasks: this.fetchLocally('tasks')
+    });
   }
 
-  handleTextChange(e) {
-    this.setState({text: e.target.value});
+  componentDidUpdate(prevProps, prevState) {
+    const {tasks} = this.state;
+    if (tasks !== prevState.tasks) {
+      this.storeLocally('tasks', tasks);
+    }
+  }
+
+  /* Callbacks */
+
+  handlePageChange(page) {
+    this.setState({
+      currentPage: page
+    });
+  }
+
+  handleTextChange(event) {
+    this.setState({
+      text: event.target.value
+    });
   }
 
   handleSubmit(event) {
@@ -41,9 +62,7 @@ class App extends Component {
         id: Date.now(),
         complete: false
       };
-      this.setState((prevState) => {
-        const tasks = prevState.tasks.concat(newTask)
-        this.storeLocally('tasks', tasks);
+      this.setState(prevState => {
         return {
           tasks: prevState.tasks.concat(newTask),
           text: ''
@@ -53,25 +72,27 @@ class App extends Component {
   }
 
   toggleComplete(id) {
-    this.setState((prevState) => {
-      const tasks = prevState.tasks.map((task) => {
-        if (task.id === id) {
-          task.complete = task.complete ? false : true; 
-        }
-        return task;
-      });
-      this.storeLocally('tasks', tasks);
-      return {tasks: tasks};
-    });
+    this.setState(prevState => {
+      return {
+        tasks: prevState.tasks.map(task => {
+          if (task.id === id) {
+            task.complete = !task.complete
+          }
+          return task
+        })
+      }
+    })
   }
 
   deleteTask(id) {
-    this.setState((prevState) => {
-      const tasks = prevState.tasks.filter(task => task.id !== id);
-      this.storeLocally('tasks', tasks);
-      return {tasks: tasks};
-    });
+    this.setState(prevState => {
+      return {
+        tasks: prevState.tasks.filter(task => task.id !== id)
+      }
+    })
   }
+
+  /* Utility */
 
   storeLocally(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -103,8 +124,8 @@ class App extends Component {
         />
         <AddTask 
           text={this.state.text}
-          addTask={this.state.handleSubmit}
-          handleChange={this.state.handleTextChange}
+          addTask={this.handleSubmit}
+          handleChange={this.handleTextChange}
         />
         <TaskList 
           tasks={this.getFilteredTasks()}
