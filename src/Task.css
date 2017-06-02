@@ -42,7 +42,7 @@
   color: gray;
 }
 
-.t-cell {
+.task-item > div {
   display: table-cell;
   vertical-align: middle;
 }

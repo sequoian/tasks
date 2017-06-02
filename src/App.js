@@ -82,6 +82,15 @@ class App extends Component {
     return JSON.parse(data) || [];
   }
 
+  getFilteredTasks() {
+    switch(this.state.currentPage) {
+      case Pages.ACTIVE:
+        return this.state.tasks.filter(t => !t.complete);
+      case Pages.COMPLETE:
+        return this.state.tasks.filter(t => t.complete);
+    }
+  }
+
   render() {
     return (
       <div className="App">  
@@ -94,8 +103,11 @@ class App extends Component {
             onChange={this.handleTextChange} value={this.state.text} /> 
           </form>
         </header>
-        <Main page={this.state.currentPage} tasks={this.state.tasks}
-        toggleComplete={this.toggleComplete} deleteTask={this.deleteTask} /> 
+        <TaskList 
+          tasks={this.getFilteredTasks()}
+          toggleComplete={this.toggleComplete} 
+          deleteTask={this.deleteTask} 
+        /> 
       </div>
     );
   }
@@ -133,6 +145,7 @@ class NavButton extends Component {
   }
 }
 
+/*
 class Main extends Component {
   render() {
     return (
@@ -143,7 +156,9 @@ class Main extends Component {
     );
   }
 }
+*/
 
+/*
 class TaskList extends Component {
   render() {
     let filterCallback = null;
@@ -165,7 +180,43 @@ class TaskList extends Component {
     );
   }
 }
+*/
 
+const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
+  <ul className="tasks">
+    {tasks.map(task => 
+      <Task 
+        task={task}
+        toggleComplete={toggleComplete}
+        deleteTask={deleteTask}
+      />
+    )}
+  </ul>
+)
+
+const Task = ({ task, toggleComplete, deleteTask }) => (
+  <li className={
+    task.complete ? 'task-item complete' : 'task-item'
+  }>
+    <div>
+      <div 
+        className="checkbox"
+        onClick={() => toggleComplete(task.id)}
+      />
+    </div>
+    <div className="task-content">
+      {task.title}
+    </div>
+    <div>
+      <div 
+        className="delete" 
+        onClick={() => deleteTask(task.id)}
+      />
+    </div>
+  </li>
+);
+
+/*
 class TaskItem extends Component {
   render() {
     const complete = this.props.task.complete ? 'complete' : '';
@@ -186,5 +237,6 @@ class TaskItem extends Component {
     );
   }
 }
+*/
 
 export default App;
