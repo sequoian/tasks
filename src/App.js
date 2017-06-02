@@ -83,11 +83,14 @@ class App extends Component {
   }
 
   getFilteredTasks() {
+    const { tasks } = this.state;
     switch(this.state.currentPage) {
       case Pages.ACTIVE:
-        return this.state.tasks.filter(t => !t.complete);
+        return tasks.filter(task => !task.complete);
       case Pages.COMPLETE:
-        return this.state.tasks.filter(t => t.complete);
+        return tasks.filter(task => task.complete);
+      default:
+        return tasks
     }
   }
 
@@ -96,7 +99,10 @@ class App extends Component {
       <div className="App">  
         <header>
           <div className="top-bar">
-            <Nav onNavClick={this.handlePageChange} selected={this.state.currentPage} />
+            <NavBar
+              currentPage={this.state.currentPage}
+              setPage={this.handlePageChange}
+            />
           </div>
           <form onSubmit={this.handleSubmit}>
             <input type="text"  placeholder="Add Task" autoFocus={true} className="new-task"
@@ -113,79 +119,47 @@ class App extends Component {
   }
 }
 
-class Nav extends Component {
-  render() {
-    return (
-      <ul className="nav">
-        <li>
-          <NavButton page={Pages.ACTIVE} 
-          selected={this.props.selected} onNavClick={this.props.onNavClick} />
-        </li>
-        <li>
-          <NavButton page={Pages.COMPLETE} 
-          selected={this.props.selected} onNavClick={this.props.onNavClick} />
-        </li>
-      </ul>
-    );
-  }
-}
+const NavBar = ({ currentPage, setPage }) => (
+  <ul className="nav">
+    <NavLink
+      thisPage={Pages.ACTIVE}
+      currentPage={currentPage}
+      setPage={setPage}
+    >
+      Active
+    </NavLink>
+    <NavLink
+      thisPage={Pages.COMPLETE}
+      currentPage={currentPage}
+      setPage={setPage}
+    >
+      Complete
+    </NavLink>
+  </ul>
+)
 
-class NavButton extends Component {
-  render() {
-    const selected = this.props.selected === this.props.page ? "selected" : null;
-    return (
-      <button 
-        type="button"
-        className={selected}
-        onClick={() => this.props.onNavClick(this.props.page)}
-      >
-        {this.props.page}
-      </button>
-    )
-  }
-}
 
-/*
-class Main extends Component {
-  render() {
-    return (
-      <div className="tasks">
-        <TaskList tasks={this.props.tasks} page={this.props.page} 
-        toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
-      </div>
-    );
-  }
-}
-*/
-
-/*
-class TaskList extends Component {
-  render() {
-    let filterCallback = null;
-    if (this.props.page === Pages.ACTIVE) {
-      filterCallback = (task) => {return !task.complete}
-    }
-    else if (this.props.page === Pages.COMPLETE) {
-      filterCallback = (task) => {return task.complete}
-    }
-    const tasks = this.props.tasks.filter(filterCallback)
-
-    return (
-      <ul className="task-list">
-        {tasks.map(task => (
-          <TaskItem key={task.id} task={task} 
-          toggleComplete={this.props.toggleComplete} deleteTask={this.props.deleteTask} />
-        ))}
-      </ul>
-    );
-  }
-}
-*/
+const NavLink = ({ children, thisPage, currentPage, setPage }) => (
+  <li>
+    <a href="#"
+      className={
+        currentPage === thisPage ? "selected" : null
+      }
+      onClick={event => {
+        event.preventDefault()
+        setPage(thisPage)
+      }}
+    >
+      {children}
+    </a>
+  </li>
+)
 
 const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
   <ul className="tasks">
     {tasks.map(task => 
-      <Task 
+      <Task
+        key={task.id} 
         task={task}
         toggleComplete={toggleComplete}
         deleteTask={deleteTask}
@@ -215,28 +189,5 @@ const Task = ({ task, toggleComplete, deleteTask }) => (
     </div>
   </li>
 );
-
-/*
-class TaskItem extends Component {
-  render() {
-    const complete = this.props.task.complete ? 'complete' : '';
-    return (
-      <li className={`task-item ${complete}`}>
-        <div className="t-cell">
-          <div className="checkbox" 
-          onClick={() => this.props.toggleComplete(this.props.task.id)} />
-        </div>
-        <div className="task-content t-cell">
-          {this.props.task.title}
-        </div>
-        <div className="t-cell">
-          <div className="delete"
-          onClick={() => this.props.deleteTask(this.props.task.id)} />
-        </div>
-      </li>
-    );
-  }
-}
-*/
 
 export default App;
