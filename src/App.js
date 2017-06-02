@@ -97,18 +97,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">  
-        <header>
-          <div className="top-bar">
-            <NavBar
-              currentPage={this.state.currentPage}
-              setPage={this.handlePageChange}
-            />
-          </div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text"  placeholder="Add Task" autoFocus={true} className="new-task"
-            onChange={this.handleTextChange} value={this.state.text} /> 
-          </form>
-        </header>
+        <NavBar
+          currentPage={this.state.currentPage}
+          setPage={this.handlePageChange}
+        />
+        <AddTask 
+          text={this.state.text}
+          addTask={this.state.handleSubmit}
+          handleChange={this.state.handleTextChange}
+        />
         <TaskList 
           tasks={this.getFilteredTasks()}
           toggleComplete={this.toggleComplete} 
@@ -118,6 +115,18 @@ class App extends Component {
     );
   }
 }
+
+const AddTask = ({ text, addTask, handleChange }) => (
+  <form onSubmit={addTask}>
+    <input type="text" 
+      placeholder="Add Task" 
+      autoFocus={true} 
+      className="new-task"
+      onChange={handleChange} 
+      value={text} 
+    /> 
+  </form>
+)
 
 const NavBar = ({ currentPage, setPage }) => (
   <ul className="nav">
