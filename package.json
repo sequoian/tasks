@@ -4,12 +4,14 @@
   "private": true,
   "homepage": "https://sequoian.github.io/tasks",
   "dependencies": {
+    "enzyme": "^2.8.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
+    "react-addons-test-utils": "^15.5.1",
     "react-scripts": "0.9.5"
   },
   "scripts": {

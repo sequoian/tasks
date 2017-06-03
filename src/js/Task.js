@@ -20,7 +20,7 @@ TaskList.propTypes = {
   deleteTask: PropTypes.func.isRequired
 };
 
-const Task = ({ task, toggleComplete, deleteTask }) => (
+export const Task = ({ task, toggleComplete, deleteTask }) => (
   <li className={
     task.complete ? 'task-item complete' : 'task-item'
   }>
