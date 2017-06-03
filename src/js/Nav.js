@@ -31,7 +31,7 @@ NavBar.propTypes = {
   setPage: PropTypes.func.isRequired
 };
 
-const NavLink = ({ children, thisPage, currentPage, setPage }) => (
+export const NavLink = ({ children, thisPage, currentPage, setPage }) => (
   <li>
     <a href="#"
       className={
