@@ -10,6 +10,7 @@ const AddTask = ({ text, addTask, handleChange }) => (
       onChange={handleChange} 
       value={text} 
     /> 
+    <button>Add</button>
   </form>
 );
 
