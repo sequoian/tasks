@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     // set initial state
     this.state = {
-      currentPage: Pages.ACTIVE,
+      currentPage: Pages.ALL,
       text: '',
       tasks: []
     }
@@ -102,12 +102,14 @@ class App extends Component {
   getFilteredTasks() {
     const { tasks } = this.state;
     switch(this.state.currentPage) {
+      case Pages.ALL:
+        return tasks;
       case Pages.ACTIVE:
         return tasks.filter(task => !task.complete);
       case Pages.COMPLETE:
         return tasks.filter(task => task.complete);
       default:
-        return tasks
+        return [];
     }
   }
 

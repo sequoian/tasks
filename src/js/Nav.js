@@ -3,12 +3,21 @@ import PropTypes from 'prop-types';
 
 // Enum for the page states
 export const Pages = {
+  ALL: 'all',
   ACTIVE: 'active',
-  COMPLETE: 'complete'
+  COMPLETE: 'complete',
+  
 }
 
 const NavBar = ({ currentPage, setPage }) => (
   <ul className="nav">
+    <NavLink
+      thisPage={Pages.ALL}
+      currentPage={currentPage}
+      setPage={setPage}
+    >
+      All
+    </NavLink>
     <NavLink
       thisPage={Pages.ACTIVE}
       currentPage={currentPage}
