@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './reset.css';
-import './App.css';
-import './Task.css';
-
-// Enum for the page states
-const Pages = {
-  ACTIVE: 'active',
-  COMPLETE: 'complete'
-}
+import NavBar, {Pages} from './Nav';
+import AddTask from './AddTask';
+import TaskList from './Task';
 
 class App extends Component {
   constructor(props) {
@@ -138,119 +131,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-const AddTask = ({ text, addTask, handleChange }) => (
-  <form onSubmit={addTask}>
-    <input type="text" 
-      placeholder="Add Task" 
-      autoFocus={true} 
-      className="new-task"
-      onChange={handleChange} 
-      value={text} 
-    /> 
-  </form>
-)
-
-AddTask.propTypes = {
-  text: PropTypes.string.isRequired,
-  addTask: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
-}
-
-const NavBar = ({ currentPage, setPage }) => (
-  <ul className="nav">
-    <NavLink
-      thisPage={Pages.ACTIVE}
-      currentPage={currentPage}
-      setPage={setPage}
-    >
-      Active
-    </NavLink>
-    <NavLink
-      thisPage={Pages.COMPLETE}
-      currentPage={currentPage}
-      setPage={setPage}
-    >
-      Complete
-    </NavLink>
-  </ul>
-)
-
-NavBar.propTypes = {
-  currentPage: PropTypes.string.isRequired,
-  setPage: PropTypes.func.isRequired
-}
-
-
-const NavLink = ({ children, thisPage, currentPage, setPage }) => (
-  <li>
-    <a href="#"
-      className={
-        currentPage === thisPage ? "selected" : null
-      }
-      onClick={event => {
-        event.preventDefault()
-        setPage(thisPage)
-      }}
-    >
-      {children}
-    </a>
-  </li>
-)
-
-NavLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  thisPage: PropTypes.string.isRequired,
-  currentPage: PropTypes.string.isRequired,
-  setPage: PropTypes.func.isRequired
-}
-
-const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
-  <ul className="tasks">
-    {tasks.map(task => 
-      <Task
-        key={task.id} 
-        task={task}
-        toggleComplete={toggleComplete}
-        deleteTask={deleteTask}
-      />
-    )}
-  </ul>
-)
-
-TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired
-}
-
-const Task = ({ task, toggleComplete, deleteTask }) => (
-  <li className={
-    task.complete ? 'task-item complete' : 'task-item'
-  }>
-    <div>
-      <div 
-        className="checkbox"
-        onClick={() => toggleComplete(task.id)}
-      />
-    </div>
-    <div className="task-content">
-      {task.title}
-    </div>
-    <div>
-      <div 
-        className="delete" 
-        onClick={() => deleteTask(task.id)}
-      />
-    </div>
-  </li>
-);
-
-Task.propTypes = {
-  task: PropTypes.object.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired
 }
 
 export default App;

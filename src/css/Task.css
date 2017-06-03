@@ -11,7 +11,7 @@
 
 .complete .checkbox {
   background-color: green;
-  background-image: url("checkmark.svg");
+  background-image: url("../assets/checkmark.svg");
   background-repeat: no-repeat;
   background-position: 50% 60%;
   background-size: 70%;

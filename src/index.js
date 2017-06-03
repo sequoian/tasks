@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './js/App';
+import './css/reset.css';
+import './css/App.css';
+import './css/Task.css';
 
 ReactDOM.render(
   <App />,
