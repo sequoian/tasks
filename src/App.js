@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './reset.css';
 import './App.css';
 import './Task.css';
@@ -12,11 +13,13 @@ const Pages = {
 class App extends Component {
   constructor(props) {
     super(props);
+    // set initial state
     this.state = {
       currentPage: Pages.ACTIVE,
       text: '',
       tasks: []
     }
+    // bind callbacks
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -149,6 +152,12 @@ const AddTask = ({ text, addTask, handleChange }) => (
   </form>
 )
 
+AddTask.propTypes = {
+  text: PropTypes.string.isRequired,
+  addTask: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+}
+
 const NavBar = ({ currentPage, setPage }) => (
   <ul className="nav">
     <NavLink
@@ -168,6 +177,11 @@ const NavBar = ({ currentPage, setPage }) => (
   </ul>
 )
 
+NavBar.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+  setPage: PropTypes.func.isRequired
+}
+
 
 const NavLink = ({ children, thisPage, currentPage, setPage }) => (
   <li>
@@ -185,6 +199,13 @@ const NavLink = ({ children, thisPage, currentPage, setPage }) => (
   </li>
 )
 
+NavLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  thisPage: PropTypes.string.isRequired,
+  currentPage: PropTypes.string.isRequired,
+  setPage: PropTypes.func.isRequired
+}
+
 const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
   <ul className="tasks">
     {tasks.map(task => 
@@ -197,6 +218,12 @@ const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
     )}
   </ul>
 )
+
+TaskList.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  toggleComplete: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired
+}
 
 const Task = ({ task, toggleComplete, deleteTask }) => (
   <li className={
@@ -219,5 +246,11 @@ const Task = ({ task, toggleComplete, deleteTask }) => (
     </div>
   </li>
 );
+
+Task.propTypes = {
+  task: PropTypes.object.isRequired,
+  toggleComplete: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired
+}
 
 export default App;
