@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Enum for the page states
-export const Pages = {
+const Pages = {
   ALL: 'all',
   ACTIVE: 'active',
   COMPLETE: 'complete',
@@ -64,3 +64,5 @@ NavLink.propTypes = {
 };
 
 export default NavBar;
+
+export {Pages}

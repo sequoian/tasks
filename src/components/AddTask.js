@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 const AddTask = ({ text, addTask, handleChange }) => (
   <form onSubmit={addTask}>
-    <input type="text" 
-      placeholder="Add Task" 
-      autoFocus={true} 
-      className="new-task"
+    <input 
+      type="text" 
+      id="new-task"
+      value={text}
       onChange={handleChange} 
-      value={text} 
+      placeholder="Add Task" 
+      autoFocus={true}  
     /> 
-    <button>+</button>
+    <button>Add</button>
   </form>
 );
 

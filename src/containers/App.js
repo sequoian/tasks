@@ -65,6 +65,7 @@ class App extends Component {
         }
       });
     }
+    document.getElementById('new-task').focus()
   }
 
   toggleComplete(id) {
