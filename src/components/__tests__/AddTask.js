@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow,mount} from 'enzyme';
-import AddTask from './AddTask';
+import AddTask from '../AddTask';
 
 describe('<AddTask />', () => {
   it('renders self', () => {

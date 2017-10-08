@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow,mount} from 'enzyme';
-import NavBar, {NavLink} from './Nav';
+import NavBar, {NavLink} from '../Nav';
 
 describe('<NavBar />', () => {
   it('renders self', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import TaskList, {Task} from './Task';
+import TaskList, {Task} from '../Task';
 
 function taskListSetup() {
   const props = {

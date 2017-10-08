@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import NavBar, {Pages} from './Nav';
-import AddTask from './AddTask';
-import TaskList from './Task';
+import NavBar, {Pages} from '../components/Nav';
+import AddTask from '../components/AddTask';
+import TaskList from '../components/Task';
 
 class App extends Component {
   constructor(props) {
