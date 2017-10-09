@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import NavBar, {Pages} from '../components/Nav';
-import AddTask from '../components/AddTask';
-import TaskList from '../components/Task';
 
 class App extends Component {
   constructor(props) {
@@ -116,21 +113,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">  
-        <NavBar
-          currentPage={this.state.currentPage}
-          setPage={this.handlePageChange}
-        />
-        <AddTask 
-          text={this.state.text}
-          addTask={this.handleSubmit}
-          handleChange={this.handleTextChange}
-        />
-        <TaskList 
-          tasks={this.getFilteredTasks()}
-          toggleComplete={this.toggleComplete} 
-          deleteTask={this.deleteTask} 
-        /> 
+      <div className="App">
       </div>
     );
   }

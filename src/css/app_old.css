@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+html, body, #root, .App {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: whitesmoke;
+}
+
+.App {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+}
+
+/* nav styles */
+
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 5px;
+}
+
+.nav a {
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 2px 10px;
+  color: #424242;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 3px solid white;
+}
+
+.nav a.selected {
+  border-bottom: 3px solid #5f8386;
+}
+
+/* new task input styles */
+
+form {
+  padding: 0 5px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+#new-task {
+  font-size: 20px;
+  border: 1px solid #999;
+  padding: 5px 10px;
+  border-radius: none;
+  vertical-align: top;
+  flex: 1;
+}

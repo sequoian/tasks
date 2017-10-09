@@ -1,51 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const TaskList = ({ tasks, toggleComplete, deleteTask }) => (
-  <ul className="tasks">
-    {tasks.map(task => 
-      <Task
-        key={task.id} 
-        task={task}
-        toggleComplete={toggleComplete}
-        deleteTask={deleteTask}
-      />
-    )}
-  </ul>
-);
-
-TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired
-};
-
-export const Task = ({ task, toggleComplete, deleteTask }) => (
-  <li className={
-    task.complete ? 'task-item complete' : 'task-item'
-  }>
-    <div>
-      <div 
-        className="checkbox"
-        onClick={() => toggleComplete(task.id)}
-      />
-    </div>
-    <div className="task-content">
-      {task.title}
-    </div>
-    <div>
-      <div 
-        className="delete" 
-        onClick={() => deleteTask(task.id)}
-      />
-    </div>
-  </li>
-);
+const Task = ({onClick, completed, text}) => (
+  <div 
+    className={completed ? "task complete" : "task"}
+    onClick={onClick}
+  >
+    {text}
+  </div>
+)
 
 Task.propTypes = {
-  task: PropTypes.object.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired
-};
+  onClick: PropTypes.func.isRequired,
+  completed: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
+}
 
-export default TaskList;
+export default Task
