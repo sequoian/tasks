@@ -19,3 +19,10 @@ export const toggleTask = id => {
     id
   }
 }
+
+export const setTaskDisplayMode = mode => {
+  return {
+    type: 'SET_TASK_DISPLAY_MODE',
+    mode
+  }
+}
