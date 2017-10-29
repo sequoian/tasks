@@ -26,3 +26,11 @@ export const setTaskDisplayMode = mode => {
     mode
   }
 }
+
+export const editTask = (id, text) => {
+  return {
+    type: 'EDIT_TASK',
+    id,
+    text
+  }
+}

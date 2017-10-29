@@ -6,14 +6,17 @@ import EditTask from './EditTask'
 const TaskList = ({
   tasks,
   onTaskClick, 
-  taskDisplayMode
+  taskDisplayMode,
+  onTaskChange
 }) => {
   const tasksByMode = tasks.map(task => {
     switch (taskDisplayMode) {
       case 'EDIT':
         return (
           <EditTask 
-            {...task} 
+            key={task.id}
+            {...task}
+            onChange={onTaskChange}
           />
         )
       default:
@@ -47,7 +50,8 @@ TaskList.propTypes = {
     }).isRequired
   ).isRequired,
   onTaskClick: PropTypes.func.isRequired,
-  taskDisplayMode: PropTypes.string.isRequired
+  taskDisplayMode: PropTypes.string.isRequired,
+  onTaskChange: PropTypes.func.isRequired
 }
 
 export default TaskList

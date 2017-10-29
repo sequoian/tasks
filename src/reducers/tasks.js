@@ -15,6 +15,12 @@ const tasks = (state = [], action) => {
         ? {...task, completed: !task.completed}
         : task
       )
+    case 'EDIT_TASK':
+      return state.map(task => 
+        (task.id === action.id)
+        ? {...task, text: action.text}
+        : task
+      )
     default:
       return state
   }
