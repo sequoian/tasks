@@ -7,7 +7,8 @@ const TaskList = ({
   tasks,
   onTaskClick, 
   taskDisplayMode,
-  onTaskChange
+  onTaskChange,
+  onTaskDelete
 }) => {
   const tasksByMode = tasks.map(task => {
     switch (taskDisplayMode) {
@@ -17,6 +18,7 @@ const TaskList = ({
             key={task.id}
             {...task}
             onChange={onTaskChange}
+            onDelete={() => onTaskDelete(task.id)}
           />
         )
       default:
@@ -51,7 +53,8 @@ TaskList.propTypes = {
   ).isRequired,
   onTaskClick: PropTypes.func.isRequired,
   taskDisplayMode: PropTypes.string.isRequired,
-  onTaskChange: PropTypes.func.isRequired
+  onTaskChange: PropTypes.func.isRequired,
+  onTaskDelete: PropTypes.func.isRequired
 }
 
 export default TaskList

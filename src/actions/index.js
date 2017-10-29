@@ -34,3 +34,10 @@ export const editTask = (id, text) => {
     text
   }
 }
+
+export const deleteTask = id => {
+  return {
+    type: 'DELETE_TASK',
+    id
+  }
+}

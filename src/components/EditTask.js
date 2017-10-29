@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const EditTask = ({id, text, onChange}) => (
+const EditTask = ({id, text, onChange, onDelete}) => (
   <div className="edit-task">
     <button>Up</button>
     <button>Down</button>
@@ -14,14 +14,17 @@ const EditTask = ({id, text, onChange}) => (
         )
       }
     />
-    <button>Delete</button>
+    <button onClick={onDelete}>
+      Delete
+    </button>
   </div>
 )
 
 EditTask.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 }
 
 export default EditTask
