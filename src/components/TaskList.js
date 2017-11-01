@@ -35,7 +35,7 @@ const TaskList = ({
   return (
     <ul id="task-list">
       {tasksByMode.map(task => (
-        <li>
+        <li key={task.key}>
           {task}
         </li>
       ))}

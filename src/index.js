@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import App from './components/App'
+import Root from './components/Root'
 import taskApp from './reducers'
 import {loadState, saveState} from './utility/localStorage'
 
@@ -19,8 +18,6 @@ store.subscribe(() => {
 })
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Root store={store} />,
   document.getElementById('root')
 )

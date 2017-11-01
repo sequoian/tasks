@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 const EditTask = ({id, text, onChange, onDelete}) => (
   <div className="edit-task">
-    <button>Up</button>
-    <button>Down</button>
     <input
       value={text}
       onChange={e => 
