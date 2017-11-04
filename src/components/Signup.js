@@ -1,19 +1,21 @@
 import React from 'react'
+import {reduxForm} from 'redux-form'
+import {createAccount} from '../actions'
+import UserForm from './UserForm'
+import {validateSignup} from '../utility/validate'
+
+const SignupForm = reduxForm({
+  form: 'signup',
+  validate: validateSignup,
+  onSubmit: createAccount
+})(UserForm)
 
 const Signup = () => (
   <div>
     <h1>Create an account</h1>
-    <form>
-      <input
-        type="text"
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-      />
-      <button type="button">Sign Up</button>
-    </form>
+    <SignupForm 
+      label="Sign Up"
+    />
   </div>
 )
 
