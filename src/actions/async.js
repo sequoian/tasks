@@ -12,3 +12,5 @@ export const createAccount = values => {
       return Promise.resolve()
     })
 }
+
+export const loginUser = createAccount

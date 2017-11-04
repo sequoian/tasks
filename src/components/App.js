@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 const App = () => (
   <div id="app">
-    <Link to="/signup">Sign Up</Link> | Log In
+    <Link to="/signup">Sign Up</Link> | <Link to="/login">Log In</Link>
     <EditButton />
     <AddTask />
     <FilterNav />

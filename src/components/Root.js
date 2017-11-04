@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import App from './App'
 import Signup from './Signup'
+import Login from './Login'
 
 const Root = ({store}) => (
   <Provider store={store}>
@@ -11,6 +12,7 @@ const Root = ({store}) => (
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
       </Switch>
     </Router>
   </Provider>

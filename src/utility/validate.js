@@ -17,3 +17,17 @@ export const validateSignup = values => {
 
   return errors
 }
+
+export const validateLogin = values => {
+  const errors = {}
+
+  if (!values.email) {
+    errors.email = 'Email required'
+  }
+
+  if (!values.password) {
+    errors.password = 'Password required'
+  }
+
+  return errors
+}
