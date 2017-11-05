@@ -1,0 +1,30 @@
+{
+  "name": "tasks",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://sequoian.github.io/tasks",
+  "dependencies": {
+    "enzyme": "^2.8.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-form": "^7.1.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    "react-addons-test-utils": "^15.5.1",
+    "react-scripts": "1.0.16"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "proxy": "http://localhost:5000/"
+}
