@@ -1,19 +1,41 @@
 import {SubmissionError} from 'redux-form'
 
 export const createAccount = values => {
-  const testFetch = () => new Promise(resolve => setTimeout(resolve, 500))
-
-  return fetch('/api', {
-    method: 'GET'
+  return fetch('/api/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(values)
   })
     .then(response => {
-      throw new SubmissionError({
-        _error: 'Backend not in yet, silly.'
-      })
+      return response.json()
     }, error => {
-      // something went wrong
       return Promise.resolve()
+    })
+    .then(json => {
+      throw new SubmissionError({
+        _error: json.message
+      })
     })
 }
 
-export const loginUser = createAccount
+export const loginUser = values => {
+  return fetch('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(values)
+  })
+    .then(response => {
+      return response.json()
+    }, error => {
+      return Promise.resolve()
+    })
+    .then(json => {
+      throw new SubmissionError({
+        _error: json.message
+      })
+    })
+}
