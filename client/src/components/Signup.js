@@ -2,7 +2,7 @@ import React from 'react'
 import {reduxForm} from 'redux-form'
 import {createAccount} from '../actions'
 import UserForm from './UserForm'
-import {validateSignup} from '../utility/validate'
+import {validateSignup} from '../validate'
 
 const SignupForm = reduxForm({
   form: 'signup',

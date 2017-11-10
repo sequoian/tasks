@@ -2,7 +2,7 @@ import React from 'react'
 import {reduxForm} from 'redux-form'
 import {loginUser} from '../actions'
 import UserForm from './UserForm'
-import {validateLogin} from '../utility/validate'
+import {validateLogin} from '../validate'
 
 const LoginForm = reduxForm({
   form: 'login',
