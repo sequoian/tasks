@@ -7,4 +7,11 @@ export const parseResponse = response => {
         json
       }
     })
+    .catch(error => {
+      // no json to parse
+      return {
+        status: response.status,
+        ok: response.ok
+      }
+    })
 }

@@ -16,8 +16,12 @@ export const createAccount = values => {
       const json = response.json
       let message
 
+      console.log('response:', response)
+
       switch(response.status) {
         case 200:
+        case 201:
+        case 204:
           message = 'Account successfully created'
           break
         case 400:
@@ -35,12 +39,13 @@ export const createAccount = values => {
       })
     })
     .catch(error => {
+      console.log('error:', error)
       if (error.name === 'SubmissionError') {
         throw error
       }
       else {
         throw new SubmissionError({
-          _error: 'Unable to connect to server'
+          _error: 'Failed to create account.  Please try again later.'
         })
       } 
     })
@@ -85,7 +90,7 @@ export const loginUser = values => {
       }
       else {
         throw new SubmissionError({
-          _error: 'Unable to connect to server'
+          _error: 'Failed to log in.  Please try again later.'
         })
       } 
     })

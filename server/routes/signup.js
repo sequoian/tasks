@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const validate = require('../validate')
 const bcrypt = require('bcrypt')
+const db = require('../db')
 const saltRounds = 10
 
 const validateInputs = (req, res, next) => {
@@ -34,9 +35,14 @@ const hashPassword = (req, res, next) => {
 const addUser = (req, res, next) => {
   const {email, hashedPassword} = req.body
 
-  res.status(200).json({
-    message: 'You are all signed up!'
-  })
+  db.users.add(email.trim(), hashedPassword)
+    .then(user => {
+      res.status(204).end()
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).end()
+    })
 }
 
 router.post('/signup', [
