@@ -24,6 +24,4 @@ else {
   db = pgp(config);
 }
 
-console.log('init db')
-
 module.exports = db

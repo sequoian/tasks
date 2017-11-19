@@ -16,8 +16,6 @@ export const createAccount = values => {
       const json = response.json
       let message
 
-      console.log('response:', response)
-
       switch(response.status) {
         case 200:
         case 201:
@@ -39,7 +37,6 @@ export const createAccount = values => {
       })
     })
     .catch(error => {
-      console.log('error:', error)
       if (error.name === 'SubmissionError') {
         throw error
       }

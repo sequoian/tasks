@@ -2,12 +2,14 @@ import React from 'react'
 import {reduxForm} from 'redux-form'
 import {createAccount} from '../actions'
 import UserForm from './UserForm'
-import {validateSignup} from '../validate'
+import {validateSignup, validateSignupAsync} from '../validate'
 
 const SignupForm = reduxForm({
   form: 'signup',
   validate: validateSignup,
-  onSubmit: createAccount
+  onSubmit: createAccount,
+  asyncValidate: validateSignupAsync,
+  asyncBlurFields: ['email']
 })(UserForm)
 
 const Signup = () => (
