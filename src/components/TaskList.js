@@ -15,7 +15,7 @@ const TaskList = ({
           key={task.id}
           {...task}
           onChange={onTaskChange}
-          onClick={() => onTaskClick(task.id)}
+          onToggle={() => onTaskClick(task.id)}
           onDelete={() => onTaskDelete(task.id)}
         />
       </li>
