@@ -7,7 +7,7 @@ import taskApp from './reducers'
 import {loadState, saveState} from './utility/localStorage'
 
 import './css/reset.css'
-import './css/app.css'
+import './css/App.css'
 
 const persistedState = loadState()
 const store = createStore(taskApp, persistedState)
