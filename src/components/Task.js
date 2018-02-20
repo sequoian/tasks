@@ -20,9 +20,10 @@ class TaskContainer extends Component {
   }
 
   render() {
-    const {text, onChange} = this.props
+    const {id, text, onChange} = this.props
     let textComponent = this.state.edit ? (
       <EditText
+        id={id}
         text={text}
         onChange={onChange}
         stopEdit={this.stopEdit}
@@ -44,12 +45,17 @@ class TaskContainer extends Component {
 
 const Task = ({completed, onToggle, onDelete, children}) => (
   <div className={completed ? "task complete" : "task"}>
-    <div onClick={onToggle}>
-      O
+    <div className="cbox-wrap">
+      <div 
+        className="checkbox"
+        onClick={onToggle}  
+      >
+        <div className="check" />
+      </div>
     </div>
     {children}
     <button onClick={onDelete}>
-      X
+      ×
     </button>
   </div>
 )
@@ -59,20 +65,21 @@ const DisplayText = ({text, startEdit}) => (
     className='task-display'
     onClick={startEdit}
   >
-    {text}
+    <div className="text">{text}</div>
   </div>
 )
 
-const EditText = ({text, onChange, stopEdit}) => (
+const EditText = ({id, text, onChange, stopEdit}) => (
   <div className='task-edit'>
     <input
       value={text}
-      onChange={onChange}
+      onChange={e => onChange(id, e.target.value)}
       onBlur={stopEdit}
       onKeyPress={e => {
-        if (e.key === 'Enter')
+        if (e.key === 'Enter') {
           e.preventDefault()
           stopEdit()
+        }
       }}
       autoFocus
       onFocus={e => {
@@ -85,6 +92,7 @@ const EditText = ({text, onChange, stopEdit}) => (
 )
 
 TaskContainer.propTypes = { 
+  id: PropTypes.number.isRequired,
   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   onToggle: PropTypes.func.isRequired,

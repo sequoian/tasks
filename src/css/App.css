@@ -1,20 +1,4 @@
-.task.complete {
-  text-decoration: line-through;
-}
-
-#filter-nav {
-  display: flex;
-}
-
-#filter-nav a {
-  color: blue;
-  text-decoration: none;
-}
-
-#filter-nav a:hover {
-  text-decoration: underline;
-}
-
-#filter-nav a.active {
-  color: black;
+#app {
+  padding: 0 10px;
+  width: 100vw;
 }

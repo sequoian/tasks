@@ -1,0 +1,92 @@
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 45px;
+}
+
+.task-display,
+.task-edit {
+  width: 100%;
+  margin: 10px;
+}
+
+/* Display */
+
+.task-display {
+  padding: 0 0.2em;
+  color: #353535;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.complete .task-display {
+  color: #9a9a9a;
+}
+
+.text {
+  display: inline;
+  cursor: pointer;
+}
+
+/* Edit */
+
+.task-edit {
+  height: 1em;
+}
+
+.task input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.1em 0.2em;
+  border: 1px solid #a2a2a2;
+  font-size: .8em;
+  color: #353535;
+}
+
+.task input:focus {
+  outline: none;
+}
+
+/* Checkbox */
+
+.cbox-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox {
+  width: 0.7em;
+  height: 0.7em;
+  border: 3px solid #0089ff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.complete .check {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-color: #0089ff;
+}
+
+/* Delete button */
+
+.task button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 0.8em;
+  color: #cc1818;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.task button:hover {
+  color: red;
+}

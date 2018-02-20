@@ -10,9 +10,8 @@ const TaskList = ({
 }) => (
   <ul id="task-list">
     {tasks.map(task => (
-      <li>
+      <li key={task.id}>
         <Task
-          key={task.id}
           {...task}
           onChange={onTaskChange}
           onToggle={() => onTaskClick(task.id)}
