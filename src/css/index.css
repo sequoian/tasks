@@ -4,4 +4,12 @@
 
 body {
   font-family: sans-serif;
+  --primary: #0089ff;
+  --secondary: orange;
+}
+
+body,
+input,
+button {
+  color: #353535;
 }

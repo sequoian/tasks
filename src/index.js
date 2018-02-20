@@ -9,7 +9,9 @@ import {loadState, saveState} from './utility/localStorage'
 import './css/reset.css'
 import './css/index.css'
 import './css/App.css'
+import './css/TaskList.css'
 import './css/Task.css'
+import './css/FilterNav.css'
 
 const persistedState = loadState()
 const store = createStore(taskApp, persistedState)

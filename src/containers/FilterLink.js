@@ -5,7 +5,7 @@ import {setVisibilityFilter} from '../actions'
 
 const Link = ({active, children, onClick}) => (
   <a
-    href="#"
+    href={'#/' + children}
     className={active ? "active" : null}
     onClick={e => {
       e.preventDefault()

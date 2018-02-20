@@ -15,18 +15,12 @@
 
 .task-display {
   padding: 0 0.2em;
-  color: #353535;
   word-wrap: break-word;
   overflow: hidden;
 }
 
 .complete .task-display {
   color: #9a9a9a;
-}
-
-.text {
-  display: inline;
-  cursor: pointer;
 }
 
 /* Edit */
@@ -42,7 +36,6 @@
   padding: 0.1em 0.2em;
   border: 1px solid #a2a2a2;
   font-size: .8em;
-  color: #353535;
 }
 
 .task input:focus {
@@ -60,7 +53,7 @@
 .checkbox {
   width: 0.7em;
   height: 0.7em;
-  border: 3px solid #0089ff;
+  border: 3px solid var(--primary);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -72,7 +65,7 @@
   width: 50%;
   height: 50%;
   border-radius: 50%;
-  background-color: #0089ff;
+  background-color: var(--primary);
 }
 
 /* Delete button */
