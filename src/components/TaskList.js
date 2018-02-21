@@ -8,7 +8,10 @@ const TaskList = ({
   onTaskChange,
   onTaskDelete
 }) => (
-  <ul id="task-list">
+  <ul 
+    id="task-list"
+    className="container"  
+  >
     {tasks.map(task => (
       <li key={task.id}>
         <Task

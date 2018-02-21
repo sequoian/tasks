@@ -13,6 +13,7 @@ import './css/TaskList.css'
 import './css/Task.css'
 import './css/FilterNav.css'
 import './css/AddTask.css'
+import './css/Header.css'
 
 const persistedState = loadState()
 const store = createStore(taskApp, persistedState)

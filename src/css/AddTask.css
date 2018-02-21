@@ -1,24 +1,24 @@
 #add-task {
   display: flex;
   justify-content: center;
-  border: 1px solid #a2a2a2;
-  border-top: none;
+  border: 1px solid #353535;
 }
 
 #add-text {
   display: block;
   width: 100%;
   margin: 0;
-  padding: 0.1em 0.2em;
+  padding: 3px 7px;
   border: none;
-  font-size: .65em;
+  font-size: 28px;
 }
 
 #add-task button {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none !important;
-  background-color: inherit;
+  background-color: #585858;
+  color: white;
   font-size: .4em;
   border-left: 1px solid #a2a2a2 !important;
   cursor: pointer;

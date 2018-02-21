@@ -1,6 +1,21 @@
 #app {
-  padding: 0 10px;
-  max-width: 900px;
+  font-size: 35px;
+}
+
+.container {
+  max-width: 960px;
   margin: auto;
-  font-size: 45px;
+  padding: 0 10px;
+}
+
+@media (min-width: 576px) {
+  #app {
+    font-size: 41px;
+  }
+}
+
+@media (min-width: 768px) {
+  #app {
+    font-size: 45px;
+  }
 }

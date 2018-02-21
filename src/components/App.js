@@ -2,11 +2,14 @@ import React from 'react'
 import FilterNav from './FilterNav'
 import AddTask from '../containers/AddTask'
 import VisibleTaskList from '../containers/VisibleTaskList'
+import Header from '../components/Header'
 
 const App = () => (
   <div id="app">
-    <AddTask />
-    <FilterNav />
+    <Header>
+      <AddTask />
+      <FilterNav />
+    </Header>
     <VisibleTaskList />
   </div>
 )
