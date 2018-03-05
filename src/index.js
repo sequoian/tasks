@@ -15,11 +15,11 @@ import './css/FilterNav.css'
 import './css/AddTask.css'
 import './css/Header.css'
 
-const persistedState = loadState()
+const persistedState = loadState('taskState')
 const store = createStore(taskApp, persistedState)
 
 store.subscribe(() => {
-  saveState({
+  saveState('taskState', {
     tasks: store.getState().tasks
   })
 })
