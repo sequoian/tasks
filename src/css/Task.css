@@ -2,13 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  margin-bottom: 0.5em;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.task:hover {
+  border: 1px solid gray;
+  box-shadow: -3px 3px 20px 0px rgba(0,0,0,0.25);
 }
 
 .task-display,
 .task-edit {
   width: 100%;
-  margin: 10px;
+  margin: 0 10px;
 }
 
 /* Display */
@@ -18,6 +25,7 @@
   word-wrap: break-word;
   overflow: hidden;
   line-height: normal;
+  cursor: text;
 }
 
 .complete .task-display {
@@ -27,7 +35,7 @@
 /* Edit */
 
 .task-edit {
-  height: 1em;
+  height: 100%;
 }
 
 .task-edit input {

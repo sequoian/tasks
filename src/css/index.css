@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
   --primary: #0089ff;
   --secondary: #ffc500;
 }
@@ -11,5 +12,6 @@ body {
 body,
 input,
 button {
+  font-family: 'Quicksand', sans-serif;
   color: #353535;
 }
