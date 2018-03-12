@@ -1,7 +1,8 @@
 #header {
   background-color: var(--primary);
-  padding-top: 10px;
-  border-bottom: 2px solid blue;
+  padding-top: 30px;
+  padding-bottom: 10px;
   position: fixed;
   width: 100%;
+  border-bottom: 3px solid #0039a0;
 }

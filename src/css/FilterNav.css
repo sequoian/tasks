@@ -9,6 +9,7 @@
 #filter-nav li {
   display: block;
   text-align: center;
+  letter-spacing: 1px;
 }
 
 #filter-nav a {
@@ -23,7 +24,7 @@
 #filter-nav a.active {
   color: inherit;
   cursor: default;
-  color: var(--secondary)
+  color: #87ffce;
 }
 
 #filter-nav a.active:hover {
