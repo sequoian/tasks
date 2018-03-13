@@ -1,5 +1,6 @@
 #app {
-  font-size: 35px;
+  font-size: 30px;
+  background-color: white;
 }
 
 .container {
@@ -8,12 +9,12 @@
 
 @media (min-width: 576px) {
   #app {
-    font-size: 41px;
+    font-size: 35px;
   }
 }
 
 @media (min-width: 768px) {
   #app {
-    font-size: 45px;
+    font-size: 40px;
   }
 }
